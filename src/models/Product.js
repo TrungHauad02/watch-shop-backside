@@ -82,7 +82,6 @@ const productSchema = new mongoose.Schema(
       },
       functions: {
         type: [String],
-        validate: [validator.isValidString],
       },
       origin: {
         type: String,
