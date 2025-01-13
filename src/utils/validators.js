@@ -40,6 +40,24 @@ const isValidString = {
 
 const allowedGenders = ["male", "female", "unisex"];
 
+const isValidEmail = {
+  validator: (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  },
+  message: "Email không hợp lệ",
+};
+
+const isValidPassword = {
+  validator: (value) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(value);
+  },
+  message:
+    "Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt",
+};
+
 export const validator = {
   isValidPrice,
   isValidQuantity,
