@@ -14,12 +14,33 @@ const router = express.Router();
  * @swagger
  * /api/products:
  *   get:
- *     summary: Get all products
+ *     summary: Get all products with pagination, sorting, and filtering
  *     tags:
  *       - Product
- *     responses:
- *       200:
- *         description: Products found
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *           default: 1
+ *         description: Page number for pagination
+ *       - in: query
+ *         name: size
+ *         schema:
+ *           type: integer
+ *           default: 10
+ *         description: Number of items per page
+ *       - in: query
+ *         name: sort
+ *         schema:
+ *           type: string
+ *         description: Sorting criteria in the format field1,-field2
+ *       - in: query
+ *         name: filter
+ *         schema:
+ *           type: string
+ *         description: JSON string for filtering products
+ *
  */
 router.get("/", productController.getAllProduct);
 

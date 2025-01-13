@@ -3,11 +3,12 @@ import { logger } from "../config/logger.js";
 
 const getAllProduct = async (req, res) => {
   try {
-    const result = await productService.getAllProductService();
+    const result = await productService.getAllProductService(req.query);
     return res.status(200).json({
       success: true,
       data: result.data,
       message: result.message,
+      pagination: result.pagination,
     });
   } catch (error) {
     logger.error("Lỗi server khi tìm kiếm các sản phẩm", {

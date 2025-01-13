@@ -1,6 +1,7 @@
 import Product from "../models/Product.js";
 import { logger } from "../config/logger.js";
 import { parseValidationErrors } from "../utils/parseValidationErrors.js";
+import { parsePaginationQuery } from "../utils/parsePaginationQuery.js";
 
 const MESSAGES = {
   CREATE_SUCCESS: "Tạo mới sản phẩm thành công",
@@ -16,15 +17,30 @@ const MESSAGES = {
   DELETE_FAIL: "Xoa that bai",
 };
 
-const getAllProductService = async () => {
+const getAllProductService = async (query) => {
   try {
     logger.info("Bắt đầu tìm kiếm các sản phẩm");
-    const products = await Product.find();
+    const { page, size, limit, skip, sortObj, filterObj } =
+      parsePaginationQuery(query);
+
+    const products = await Product.find(filterObj)
+      .sort(sortObj)
+      .skip(skip)
+      .limit(limit);
+
+    const totalProducts = await Product.countDocuments(filterObj);
+
     logger.info("Tìm thấy các sản phẩm", { count: products.length });
     return {
       success: true,
       message: MESSAGES.PRODUCT_FOUND,
       data: products,
+      pagination: {
+        totalElements: totalProducts,
+        totalPages: Math.ceil(totalProducts / limit),
+        page: parseInt(page),
+        size: parseInt(size),
+      },
     };
   } catch (error) {
     logger.error(MESSAGES.GET_PRODUCT_ERROR, { error: error.message });
