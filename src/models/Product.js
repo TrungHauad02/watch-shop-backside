@@ -3,8 +3,6 @@ import { validator } from "../utils/validators.js";
 
 const productSchema = new mongoose.Schema(
   {
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
     view: { type: Number, default: 0 },
     name: {
       type: String,
@@ -92,6 +90,10 @@ const productSchema = new mongoose.Schema(
         type: String,
         enum: validator.allowedGenders,
         required: [true, "Giới tính sản phẩm là bắt buộc"],
+      },
+      description: {
+        // Mô tả
+        type: String,
       },
     },
   },
