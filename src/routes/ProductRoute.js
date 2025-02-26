@@ -40,6 +40,13 @@ const router = express.Router();
  *         schema:
  *           type: string
  *         description: JSON string for filtering products
+ *     responses:
+ *       200:
+ *         description: A list of products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
  *
  */
 router.get("/", productController.getAllProduct);
