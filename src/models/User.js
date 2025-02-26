@@ -3,16 +3,6 @@ import { validator } from "../utils/validators.js";
 
 const userSchema = new mongoose.Schema(
   {
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    }, // Ngày tạo người dùng
-
-    updatedAt: {
-      type: Date,
-      default: Date.now,
-    }, // Ngày cập nhật người dùng
-
     name: {
       type: String,
       required: [true, "Tên người dùng là bắt buộc"],
