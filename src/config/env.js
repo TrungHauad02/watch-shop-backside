@@ -6,4 +6,6 @@ export const env = {
   DATABASE_NAME: process.env.DATABASE_NAME,
 
   PORT: process.env.PORT,
+
+  JWT_SECRET: process.env.JWT_SECRET,
 };

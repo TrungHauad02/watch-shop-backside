@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema(
       validate: validator.isValidPassword,
     }, // Mật khẩu
 
-    refreshToken: {
-      type: String,
-    }, // Token để làm mới xác thực
-
     role: {
       type: String,
       enum: {
