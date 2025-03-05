@@ -1,8 +1,8 @@
 import User from "../models/User.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { logger } from "../config/logger.js";
-import { env } from "@src/config/env.js";
+import { env } from "../config/env.js";
 
 const MESSAGES = {
   LOGIN_SUCCESS: "Đăng nhập thành công",
